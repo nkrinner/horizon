@@ -14,16 +14,9 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from horizon import forms
+from django.views.generic.base import TemplateView
 from django.http import HttpResponse
 
-from .forms import UserSettingsForm
 
-
-class DocpageView(forms.ModalFormView):
-    form_class = UserSettingsForm
+class DocpageView(TemplateView):
     template_name = 'susedoc/docpage/docpage.html'
-
-    def get_initial(self):
-        return {'language': self.request.LANGUAGE_CODE,
-                'timezone': self.request.session.get('django_timezone', 'UTC')}
